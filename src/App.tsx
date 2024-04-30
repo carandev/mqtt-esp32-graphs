@@ -6,7 +6,7 @@ import mqtt from 'mqtt'
 interface Data {
   time: string;
   temperature: string;
-  humidity: string;
+  humidity: string | null
 }
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
       const payload = message.toString()
 
       if (topic === topicTemp) {
-        setData(prevData => [...prevData, { time: new Date().toLocaleTimeString(), temperature: payload }])
+        setData((prevData) => [...prevData, { time: new Date().toLocaleTimeString(), temperature: payload, humidity: null }])
       }
 
       if (topic === topicHum) {
