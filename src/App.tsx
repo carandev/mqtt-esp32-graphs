@@ -54,7 +54,17 @@ function App() {
       const payload = message.toString()
 
       if (topic === topicTemp) {
-        setData((prevData) => [...prevData, { time: new Date().toLocaleTimeString(), temperature: payload, humidity: null }])
+        setData((prevData) => {
+          const newData = [...prevData];
+
+          if (newData.length >= 10) {
+            newData.shift();
+          }
+
+          newData.push({ time: new Date().toLocaleTimeString(), temperature: payload, humidity: null });
+
+          return newData;
+        });
       }
 
       if (topic === topicHum) {
