@@ -51,7 +51,6 @@ function App() {
 
 
     client.on("message", (topic: string, message) => {
-      // Función para manejar el mensaje recibido
       const payload = message.toString()
 
       if (topic === topicTemp) {
